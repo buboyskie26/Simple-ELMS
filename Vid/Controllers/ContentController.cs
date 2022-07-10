@@ -11,7 +11,7 @@ namespace Vid.Controllers
 {
     public class ContentController : Controller
     {
-
+        //d
         private readonly ApplicationDbContext _context;
 
         public ContentController(ApplicationDbContext context)
