@@ -1,0 +1,56 @@
+﻿@model Vid.ModelsTwo.CategoryToChooseModel;
+@using Vid.Areas.Admin.Comparer;
+
+@{
+    ViewData["Title"] = "Course SEction";
+}
+
+<div class="row">
+    <div class="col-md-10 offset-1">
+        <form asp-action="Index" method="post">
+
+            <input type="hidden" asp-for="UserId" />
+
+            <table class="table table-bordered">
+                @if (Model != null)
+                {
+                    <thead>
+                        <tr class="text-center">
+
+                            <th></th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <tr class="text-center">
+                                <td>
+                                    @if (Model.CategoriesSelected != null
+                                       && Model.CategoriesSelected.Contains(item, new CompareCategories()))
+                                    {
+                                        <input type="checkbox" checked class="form-check-input"
+                                               id="CategoriesSelected" name="CategoriesSelected" value="@item.Id" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" class="form-check-input"
+                                               id="CategoriesSelected" name="CategoriesSelected" value="@item.Id" />
+                                    }
+                                </td>
+                                <td>@item.Title</td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+            <div class="row">
+                <div class="col-md-10 d-flex">
+                    <input style="width:150px;" type="submit" value="Save" class="btn btn-block btn-info ml-auto" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+

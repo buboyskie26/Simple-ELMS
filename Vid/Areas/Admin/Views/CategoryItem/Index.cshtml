@@ -1,0 +1,67 @@
+﻿@model  Vid.ViewModel.CategoryItemVM.CatListItemIndex
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<p>
+    <a class="btn btn-outline-success text-white" asp-action="Create"
+       asp-route-categoryId="@Model.CategoryId">
+        Create
+    </a>
+   @* <partial name="_CreateButtonPartial" model="@ViewBag.CategoryId" />*@
+</p>
+@if (Model.CatList.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+               Title
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                   Released Date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CatList)
+            {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.DateTimeItemReleased</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="text-info mr-2"><i class="fas fa-edit"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="text-dark mr-2"><i class="fas fa-table"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger mr-2"><i class="fas fa-trash"></i></a>
+
+
+                    @if (item.ContentId == 0)
+                    {
+                        <a asp-controller="Content" asp-action="Create" asp-route-categoryItemId="@item.Id" asp-route-categoryId="@item.CategoryId">Add Content</a>
+
+                    }
+                    else
+                    {
+                        <a asp-controller="Content" asp-action="Edit" asp-route-categoryItemId="@item.Id" asp-route-categoryId="@item.CategoryId">Edit Content</a>
+
+                    }
+                </td>
+
+
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-center">Nothing here</p>
+}

@@ -1,0 +1,130 @@
+﻿@model Vid.ViewModel.AccountVM.RegisterVM
+
+<div class="hold-transition register-page col-md-6 offset-md-3">
+    <div class="register-box">
+        <div class="register-logo text-center">
+            Create a New Account
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <form asp-action="Register" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="RegistrationInValid" />
+                    <div class="input-group mb-3">
+                        <input asp-for="FirstName" class="form-control" placeholder="First name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="LastName" class="form-control" placeholder="Last name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="Email" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="Address1" class="form-control" placeholder="Address">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-home"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Address1" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-mobile-phone"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="PostCode" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="PostCode" class="form-control" placeholder="Post Code">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-code"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="PostCode" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="Password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Retype password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                    <div class="input-group mb-3">
+                        <label class="col-md-2" asp-for="RoleName">Role</label>
+                        <div class="col-md-10">
+                            <select asp-for="RoleName" asp-items="@Vid.Utility.Helper.GetRolesForDropDown()"
+                                    class="form-control"></select>
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <input asp-for="AcceptUserAgreement" class="form-check-input">
+                                <label asp-for="AcceptUserAgreement" class="form-check-label">I accept the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="CategoryId" />
+
+
+
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </div>
+                </form>
+                <a asp-action="Login" class="text-center">I already have an account</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+
+
+
+

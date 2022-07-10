@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Vid.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white">
+                <i class="fas fa-user-alt"></i>
+                <p>Hello @UserManager.GetUserAsync(User).Result?.FirstName!</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="nav-link" asp-controller="Account" asp-action="Logoff">
+                <i class="fas fa-sign-out-alt"></i>
+                <input class="bg-transparent text-white" type="submit" value="Logout" />
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item active">
+
+            <a class="nav-link" asp-controller="Account" asp-action="Register">
+                <i class="fas fa-registered"></i>
+                <p>Register</p>
+            </a>
+        </li>
+        <li class="nav-item active">
+
+            <a class="nav-link" asp-controller="Account" asp-action="Login">
+                <i class="fas fa-user"></i>
+                <p>Login</p>
+            </a>
+        </li>
+    }
+</ul>

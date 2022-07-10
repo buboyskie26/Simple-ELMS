@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Vid.Entities.Category>;
+
+
+@using Vid.Extensions;
+@using Vid.Areas.Admin.Models;
+@using Vid.Areas.Admin.ModelsSamp;
+
+ <form asp-action="Index">
+
+     <div class="row">
+         <div class="col-md-5">
+             <div class="form-group">
+                 <h3 class="text-center">Category</h3>
+
+                 <select class="form-control" id="CategoryId" name="CategoryId"
+                         asp-items="Model.ConvertToSelectList(0)">
+                     <option value="0">Choose Category</option>
+                 </select>
+             </div>
+
+         </div>
+
+         <div class="col-md-10">
+             <div class="form-group">
+                 <div id="UsersPopulate" name="UsersPopulate">
+                     <partial name="_UsersListViewPartial" 
+                              model="new UsersModelSampList { UsersSelected=null, CategoryId=0, Users=null }" />
+                 </div>
+             </div>
+             <div class="text-right">
+                 <button class="btn btn-outline-success" type="button" 
+                         id="SaveSelectedUsers"name="SaveSelectedUsers">
+                     Save
+                 </button>
+             </div>
+         </div>
+     </div>
+ </form>
+
+@section Scripts{
+    @*    <script src="~/js/UserToCategory.js"></script>
+        <script src="~/js/BootstrapAlerts.js"></script>*@
+
+    <script src="~/js/BootstrapAlerts.js"></script>
+    <script src="/js/prac/UserToCategorySamp.js"></script>
+}
